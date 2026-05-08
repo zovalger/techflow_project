@@ -15,6 +15,14 @@
               parent="menu_tech_root"
               sequence="20"/>
 
+    <menuitem id="menu_tech_rating" 
+              name="Valoraciones" 
+              parent="menu_tech_config"
+              action="action_tech_rating"
+              sequence="5"
+              groups="tech_inventory.group_tech_valorador,base.group_system"
+              />
+              
     <menuitem id="menu_tech_category" 
               name="Categorías" 
               parent="menu_tech_config"

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tech_rating_list" model="ir.ui.view">
+        <field name="name">tech.rating.list</field>
+        <field name="model">tech.rating</field>
+        <field name="arch" type="xml">
+            <list string="Valoraciones de los Equipos Tecnológicos">
+                <field name="name"/>
+                <field name="rating"/>
+                <field name="evaluated_by_id"/>
+                <field name="is_recommended"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tech_rating_form" model="ir.ui.view">
+        <field name="name">tech.rating.form</field>
+        <field name="model">tech.rating</field>
+        <field name="arch" type="xml">
+            <form string="Valoracion">
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field 
+                                name="equipment_id" 
+                                placeholder="Equipo a evaluar"
+                                options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"
+                            />
+                        </h1>
+                    </div>
+
+                   <group>
+                        <field name="rating_date"/>
+                        <field name="rating"/>
+                        <field name="active" />
+                        <field name="evaluated_by_id" readonly="True"/>
+                        <field name="is_recommended" readonly="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- <record id="view_tech_rating_search" model="ir.ui.view">
+        <field name="name">tech.rating.search</field>
+        <field name="model">tech.rating</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Equipos">
+                <field name="name"/>
+                <field name="serial"/>
+                <field name="category_id"/>
+                <field name="employee_id"/>
+                <filter name="available" string="Disponibles" domain="[('state', '=', 'available')]"/>
+                <filter name="assigned" string="Asignados" domain="[('state', '=', 'assigned')]"/>
+                <filter name="repair" string="En reparación" domain="[('state', '=', 'repair')]"/>
+                <filter name="decommissioned" string="Desincorporados" domain="[('state', '=', 'decommissioned')]"/>
+                <separator/>
+                <group expand="0" string="Agrupar por">
+                    <filter name="group_by_category" string="Categoría" context="{'group_by': 'category_id'}"/>
+                    <filter name="group_by_state" string="Estado" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record> -->
+
+    <record id="action_tech_rating" model="ir.actions.act_window">
+        <field name="name">Valoraciones</field>
+        <field name="res_model">tech.rating</field>
+        <field name="view_mode">list,form</field>
+        <!-- <field name="search_view_id" ref="view_tech_rating_search"/> -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Registra tus primeras Valoraciones!
+            </p>
+        </field>
+    </record>
+</odoo>

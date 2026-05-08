@@ -22,8 +22,7 @@ class TechRating(models.Model):
     rating_date = fields.Date(
         string = 'Fecha de la valoración',
         required = True,
-        default = fields.Date.today
-        )
+    )
     
     rating = fields.Selection([
         ('bad', 'Malo'),
@@ -32,7 +31,7 @@ class TechRating(models.Model):
         ], 
         string = 'Valoración',
         required = True,
-        default='available',
+        default='regular',
     )      
 
     is_recommended = fields.Boolean(
@@ -44,7 +43,7 @@ class TechRating(models.Model):
     active = fields.Boolean(
         string = 'Activo',
         required = True,
-        default = False
+        default = True
     )
 
     name = fields.Char(
