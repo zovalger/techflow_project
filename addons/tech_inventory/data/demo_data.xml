@@ -21,6 +21,11 @@
             <field name="description">Monitores, teclados, mouse y accesorios</field>
         </record>
 
+          <record id="category_mini_computers" model="tech.category">
+            <field name="name">Mini Computadoras</field>
+            <field name="description">Computadoras de escritorio portables</field>
+        </record>
+
         <record id="equipment_laptop_lenovo" model="tech.equipment">
             <field name="name">Lenovo ThinkPad X1</field>
             <field name="serial">LEN-2024-00123456</field>
@@ -46,6 +51,39 @@
             <field name="state">available</field>
             <field name="cost">3500.00</field>
             <field name="purchase_date">2023-11-20</field>
+        </record>
+
+
+
+
+
+
+
+        <record id="equipment_desktop_msi" model="tech.equipment">
+            <field name="name">Pc Gamer Amd Ryzen 7 5700g</field>
+            <field name="serial">MSI-2026-00823456</field>
+            <field name="category_id" ref="category_desktop"/>
+            <field name="state">assigned</field>
+            <field name="cost">2500.00</field>
+            <field name="purchase_date">2026-05-07</field>
+        </record>
+
+        <record id="equipment_dell_mouse" model="tech.equipment">
+            <field name="name">Dell Mouse Ractor</field>
+            <field name="serial">DEL-2026-00888123</field>
+            <field name="category_id" ref="category_peripheral"/>
+            <field name="state">assigned</field>
+            <field name="cost">100.00</field>
+            <field name="purchase_date">2026-05-06</field>
+        </record>
+
+        <record id="equipment_hp_mini" model="tech.equipment">
+            <field name="name">HP Mini i5 6500u</field>
+            <field name="serial">HPE-2024-98765992</field>
+            <field name="category_id" ref="category_mini_computers"/>
+            <field name="state">assigned</field>
+            <field name="cost">500.00</field>
+            <field name="purchase_date">2026-03-06</field>
         </record>
     </data>
 </odoo>
