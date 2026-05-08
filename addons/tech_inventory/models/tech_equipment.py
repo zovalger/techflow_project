@@ -32,7 +32,11 @@ class TechEquipment(models.Model):
         ('assigned', 'Asignado'),
         ('repair', 'En Reparación'),
         ('decommissioned', 'Desincorporado')
-    ], string='Estado', required=True, default='available')
+        ], 
+        string='Estado',
+        required=True,
+        default='available',
+    )      
     
     cost = fields.Monetary(
         string='Costo (USD)', 
@@ -42,6 +46,7 @@ class TechEquipment(models.Model):
     
     tax_value = fields.Monetary(
         string='Valor con Impuesto (15%)',
+        compute="_compute_tax_value",
         store=True,
         currency_field='currency_id'
     )
@@ -58,5 +63,41 @@ class TechEquipment(models.Model):
         ('serial_unique', 'unique(serial)', 'El número de serie debe ser único!')
     ]
 
+    @api.constrains('serial')
+    def _check_serial_lenght(self):
+        for record in self:
+            if record.serial and len(record.serial) < 8:
+                raise ValidationError("El serial del equipo debe tener obligatoriamente al menos 8 caracteres.")
+
+    @api.depends('cost') 
+    def _compute_tax_value(self): 
+        for record in self: 
+            record.tax_value = record.cost * 1.15
+
+    @api.onchange('employee_id') 
+    def _onchange_state(self): 
+        for record in self:
+            if record.employee_id:
+                record.state = 'assigned'
+            else:
+                # todo: ver si hay que poner condicional aqui
+                record.state = 'available'
+
+    def action_state_repair(self): 
+        for record in self:
+            record.state = 'repair'
+            record.employee_id = False
+
+    def action_state_decommissioned(self): 
+        for record in self:
+            record.state = 'decommissioned'
+            record.employee_id = False
+            
+    def action_state_available(self): 
+        for record in self:
+            record.state = 'available'
+            record.employee_id = False
+       
+        
 
 
